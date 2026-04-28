@@ -30,4 +30,12 @@ console.log(texto2)
 const texto3 = texto2.join("-");
 console.log(texto3)
 
+// Metodo toFixed
+const precoProduto = 199.99;
+const desconto = 0.15; // 15%
+const precoFinal = precoProduto * (1-desconto);
+console.log(precoFinal)
+// `` - template strings - concatenação
+console.log(`R$ ${precoFinal.toFixed(2)}`);
+
 
