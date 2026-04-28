@@ -39,3 +39,7 @@ console.log(precoFinal)
 console.log(`R$ ${precoFinal.toFixed(2)}`);
 
 
+// DOM (DOCUMENT OBJECT MODEL)
+const titulo = document.getElementById("titulo")
+titulo.innerText = "O DOM mudou o texto";
+titulo.style.color = "blue";
