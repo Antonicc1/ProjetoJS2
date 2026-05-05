@@ -38,8 +38,48 @@ console.log(precoFinal)
 // `` - template strings - concatenação
 console.log(`R$ ${precoFinal.toFixed(2)}`);
 
-
 // DOM (DOCUMENT OBJECT MODEL)
 const titulo = document.getElementById("titulo")
 titulo.innerText = "O DOM mudou o texto";
 titulo.style.color = "blue";
+
+// Criando o App
+// Primeira coisa sempre pra tudo: banco de dados
+// Rede de objetos:
+const produtos =[
+    {nome:"Teclado Mecânico",preco:300,emPromocao:true},
+    {nome:"Mouse Gamer",preco:150,emPromocao:false},
+    {nome:"Monitor Gamer",preco:1300,emPromocao:true},
+    {nome:"Mousepad XL",preco:400,emPromocao:false},
+];
+
+const container = document.getElementById("listar-produtos");
+const mostrarTotal = document.getElementById("resultado-total");
+
+// Map: transforma o array de objetos em um array de strings html e css
+function todosProdutos(lista){
+    mostrarTotal.innerText=""; // passa o texto pro html
+    const htmlProdutos = lista.map(item =>`
+        <div class="card">
+            <h3>${item.nome}</h3>
+            <p>Preço: R$ ${item.preco}</p>
+            ${item.emPromocao ? '<span class="tag">Promoção</span>':''}
+        </div>
+        `).join(''); // transforma o arrau em uma unica string
+
+        container.innerHTML = htmlProdutos;
+}
+
+// filter: cria uma nova lista apenas com o que escolheu (promoção)
+function filtrarPromocoes() {
+    const promocionais = produtos.filter(item => item.emPromocao);
+    todosProdutos(promocionais);
+}
+
+// Reduce: reduz o array á um unico valor (soma dos preços)
+function calcularTotal() {
+    const total = produtos.reduce((acumulador,item)=>{
+        return acumulador + item.preco;
+    },0);
+    mostrarTotal.innerText = `Valor Total R$ ${total}`;
+}
